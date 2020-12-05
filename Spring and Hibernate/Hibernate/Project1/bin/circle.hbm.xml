@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.circle" table="circle">
+
+<id name="idCircle" column="idCircle" type="integer" length="11">
+<generator class="foreign">
+<param name="property">add</param>
+</generator>
+</id>
+
+<property name="name" column="name" type="string" length="45"/>
+<property name="region_idRegion" column="region_idRegion" insert="false" type="integer" length="11"/>
+
+<one-to-one name="add" class="ps.Address" cascade="all" />
+
+<set name="roles" cascade="all" table="circle_has_role">
+<key column="circle_idCircle" />
+<many-to-many class="ps.role" column="role_idrole" />
+</set>
+
+<set name="division" cascade="all">
+<key column="circle_idCircle" />
+<one-to-many class="ps.division" />
+</set>
+
+</class>
+
+</hibernate-mapping>

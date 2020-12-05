@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Employees" table="employees">
+<id name="employeeId" column="e_id" />
+<property name="employeeName" column="e_name" />
+<property name="foreignId" column="f_id" insert="false" />
+</class>
+</hibernate-mapping>

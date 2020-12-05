@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="ps.Student" table="student3">
+        <id name="studentId" column="id">
+            <generator class="increment" />
+        </id>
+        <property name="studentName" column="name" />
+        <property name="address" column="address" />
+        <property name="age" column="age" />
+        
+        <filter name="studentName" condition="name like '%c%'"></filter>
+        
+        <filter name="ageFilter" condition="age >= :age"></filter>
+    </class>
+    
+    <filter-def name="studentName"/>
+    
+    <filter-def name="ageFilter">
+    <filter-param name="age" type="int"/>
+    </filter-def>
+    
+</hibernate-mapping>

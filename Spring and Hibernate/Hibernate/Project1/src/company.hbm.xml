@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.company" table="company">
+
+<id name="idCompany" column="idCompany" length="11">
+<generator class="foreign">
+<param name="property">add</param>
+</generator>
+</id>
+
+<property name="name" column="name" type="string" length="45" />
+<property name="initials" column="initials" type="string" length="45" />
+<property name="email" column="email" type="string" length="45" />
+<property name="contact" column="contact" type="integer" length="10" />
+
+<one-to-one name="add" class="ps.Address" cascade="all" />
+
+<set name="roles" cascade="all" table="company_has_role">
+<key column="company_idCompany" />
+<many-to-many class="ps.role" column="role_idrole" />
+</set>
+
+<set name="region" cascade="all">
+<key column="company_idCompany" />
+<one-to-many class="ps.region" />
+</set>
+</class>
+
+</hibernate-mapping>

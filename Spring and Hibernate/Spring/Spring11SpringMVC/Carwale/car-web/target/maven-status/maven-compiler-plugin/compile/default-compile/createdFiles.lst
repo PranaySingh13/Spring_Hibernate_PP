@@ -1,0 +1,10 @@
+com\pp\controller\RegistrationController.class
+com\pp\validator\RegistrationValidator.class
+com\pp\validator\LoginValidator.class
+com\pp\validator\ProductValidator.class
+com\pp\controller\LoginController.class
+com\pp\interceptor\SessionInterceptor.class
+com\pp\controller\ProductController.class
+com\pp\interceptor\EmailInterceptor.class
+com\pp\controller\ws\LoginControllerWS.class
+com\pp\interceptor\WebServiceInterceptor.class

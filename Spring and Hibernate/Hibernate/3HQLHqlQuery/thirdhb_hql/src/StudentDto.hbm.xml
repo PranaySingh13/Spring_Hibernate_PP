@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+      <hibernate-mapping>
+         <class name="thirdhb_hql.StudentDto" table="student">
+	   <id name="sid" column="stud_id" type="integer">
+	     <generator class="assigned" />
+	   </id>
+		
+	   <property name="sname" column="stud_name" type="string"/>
+	   <property name="smarks" column="stud_marks" type="double"/>
+	   
+  	</class>
+      </hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Company" table="company">
+<id name="companyId" column="c_id" />
+<property name="companyName" column="c_name" />
+
+<set name="child" cascade="all">
+<key column="f_id" />
+<one-to-many class="ps.Employees"/>
+</set>
+
+</class>
+</hibernate-mapping>

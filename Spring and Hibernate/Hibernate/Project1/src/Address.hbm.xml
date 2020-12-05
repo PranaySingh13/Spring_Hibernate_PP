@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Address" table="Address">
+
+<id name="idAddress" column="idAddress" type="integer" length="11" />
+<property name="line1" column="line1" type="string" length="45" />
+<property name="line2" column="line2" type="string" length="45" />
+<property name="state" column="state" type="string" length="45" />
+<property name="country" column="country" type="string" length="45" />
+<property name="pin" column="pin" type="integer" length="6" />
+<property name="district" column="district" type="string" length="45" />
+
+</class>
+</hibernate-mapping>

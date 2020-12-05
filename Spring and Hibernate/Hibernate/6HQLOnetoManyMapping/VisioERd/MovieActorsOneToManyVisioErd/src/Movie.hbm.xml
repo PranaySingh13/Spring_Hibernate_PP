@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Movie" table="movie">
+
+<id name="movieId" column="mid" />
+<property name="movieName" column="mname" />
+
+<set name="childObject" cascade="all">
+<key column="fid" />
+<one-to-many class="ps.Actors"/>
+</set>
+
+</class>
+</hibernate-mapping>

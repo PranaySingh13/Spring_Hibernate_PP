@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.subdivision" table="subdivision">
+
+<id name="idSubDivision" column="idSubDivision" type="integer" length="11">
+<generator class="foreign">
+<param name="property">add</param>
+</generator>
+</id>
+
+<property name="name" column="name" type="string" length="45"/>
+<property name="division_idDivision" column="division_idDivision" insert="false" type="integer" length="11"/>
+
+<one-to-one name="add" class="ps.Address" cascade="all" />
+
+<set name="roles" cascade="all" table="subdivision_has_role">
+<key column="subdivision_idSubDivision" />
+<many-to-many class="ps.role" column="role_idrole" />
+</set>
+
+<set name="distcenter_zone" cascade="all">
+<key column="subdivision_idSubDivision" />
+<one-to-many class="ps.distcenter_zone" />
+</set>
+
+</class>
+
+</hibernate-mapping>

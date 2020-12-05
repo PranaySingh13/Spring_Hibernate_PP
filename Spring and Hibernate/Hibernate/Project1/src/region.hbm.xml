@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.region" table="region">
+
+<id name="idRegion" column="idRegion" type="integer" length="11">
+<generator class="foreign">
+<param name="property">add</param>
+</generator>
+</id>
+
+<property name="name" column="name" type="string" length="45"/>
+<property name="company_idCompany" column="company_idCompany" insert="false" type="integer" length="11"/>
+
+<one-to-one name="add" class="ps.Address" cascade="all" />
+
+<set name="roles" cascade="all" table="region_has_role">
+<key column="region_idRegion" />
+<many-to-many class="ps.role" column="role_idrole" />
+</set>
+
+<set name="circle" cascade="all">
+<key column="region_idRegion" />
+<one-to-many class="ps.circle" />
+</set>
+
+</class>
+
+</hibernate-mapping>

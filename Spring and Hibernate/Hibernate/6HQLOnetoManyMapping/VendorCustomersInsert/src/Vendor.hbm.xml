@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Vendor" table="vendor">
+
+<id name="vendorId" column="vendid" />
+<property name="vendorName" column="vendname" />
+
+<set name="child" cascade="all">
+<key column="fid" />
+<one-to-many class="ps.Customers"/>
+</set>
+
+</class>
+</hibernate-mapping>

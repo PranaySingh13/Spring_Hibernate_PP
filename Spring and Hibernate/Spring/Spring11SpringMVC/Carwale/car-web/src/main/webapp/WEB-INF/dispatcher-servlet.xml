@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/util http://wwsw.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<context:component-scan base-package="com.pp.repo" />
+	<context:component-scan base-package="com.pp.service" />
+	<context:component-scan base-package="com.pp.controller" />
+	<context:component-scan base-package="com.pp.validator" />
+	<context:component-scan base-package="com.pp.controller.ws" />
+	
+
+	<!-- context:component-scan element in the spring configuration file would
+	 	eliminate the need for declaring all the beans in the XML files.The above declaration in the spring application 
+	 	configuration file would scan the classes inside the specified package and create the beans instance. 
+	 	Note that it could create beans only if that class is annotated with correct annotations.
+	 	@Component @Repository @Service	@Controller
+		One advantage of this element is that it also resolve @Autowired and @Qualifier annotations. Therefore if you declare 
+		<context:component-scan>, is not necessary anymore declare <context:annotation-config> too   -->
+	 	
+	
+	<mvc:annotation-driven />
+	
+	<!-- mvc:annotation-driven is used for enabling the Spring MVC components with its default configurations.
+	 If you dont include mvc:annotation-driven also your MVC application would work if you have used the 
+	 context:component-scan for creating the beans or defined the beans in your XML file. But, mvc:annotation-driven
+	 does some extra job on configuring the special beans that would not have been configured if you are not using 
+	 this element in your XML file.This tag would registers the HandlerMapping and HandlerAdapter required to
+	 dispatch requests to your @Controllers. -->
+	
+	<context:annotation-config />
+
+	<!-- context:annotation-config is used for activating annotations in beans already registered in the application
+	 context (no matter whether they were defined with XML or by package scanning). That means it will resolve 
+	 @Autowired and @Qualifier annotations for the beans which are already created and stored in the spring container.
+	 context:annotation-config will not search for the beans registration, this will only activate the already 
+	 registered beans in the context. -->
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.tiles2.TilesView
+			</value>
+		</property>
+	</bean>
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+         <property name="defaultLocale" value="en_US" />
+    </bean>
+	
+	<mvc:interceptors>
+		
+		<bean
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language"/>
+		</bean>
+	
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/><!-- Scenario 1 -->
+			<mvc:exclude-mapping path="/userSignIn.do"/>
+			<mvc:exclude-mapping path="/ShowRegistration.do"/>
+			<mvc:exclude-mapping path="/ws.do"/>
+			<mvc:exclude-mapping path="/ws/save.do"/>
+			<mvc:exclude-mapping path="/ws/update/{id}" />
+			<mvc:exclude-mapping path="/ws/delete/{id}"/>
+			<!-- we have to exclude the webservice URL in the interceptor
+														 because initially webservices have to hit directly on controller
+														 so we exclude it. -->
+			<bean class="com.pp.interceptor.SessionInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+       		<mvc:mapping path="/**"></mvc:mapping>
+       		<bean class="com.pp.interceptor.WebServiceInterceptor" />
+       </mvc:interceptor>
+	<!-- 
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>Scenario 1
+			<mvc:exclude-mapping path="/userSignIn.do"/>
+			<mvc:exclude-mapping path="/ShowRegistration.do"/>
+			<bean class="com.pp.interceptor.EmailInterceptor" />
+		</mvc:interceptor>
+	 -->
+	</mvc:interceptors>
+		
+</beans>

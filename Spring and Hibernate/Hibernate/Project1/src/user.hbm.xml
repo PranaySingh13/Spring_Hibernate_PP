@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.user" table="user">
+
+<id name="idUser" column="idUser" type="integer" length="11" />
+<property name="name" column="name" type="string" length="45"/>
+<property name="mobile" column="mobile" type="integer" length="11"/>
+<property name="phone" column="phone" type="integer" length="11"/>
+<property name="password" column="password" type="string" length="45"/>
+<property name="email" column="email" type="string" length="45"/>
+
+<set name="roles" cascade="all" table="user_has_role">
+<key column="user_idUser" />
+<many-to-many class="ps.role" column="role_idrole" />
+</set>
+
+</class>
+</hibernate-mapping>

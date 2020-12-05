@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.Actors" table="actor2">
+
+<id name="actorId" column="aid" />
+<property name="actorName" column="aname" />
+
+<property name="foreignId" column="fid" insert="false" update="false"/>
+
+<many-to-one name="parentObject" column="fid" cascade="all" />
+
+</class>
+</hibernate-mapping>

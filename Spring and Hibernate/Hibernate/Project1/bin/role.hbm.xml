@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="ps.role" table="role">
+
+<id name="idrole" column="idrole" type="integer" length="11" />
+<property name="rcreate" column="rcreate" type="integer" length="4"/>
+<property name="rread" column="rread" type="integer" length="4"/>
+<property name="rupdate" column="rupdate" type="integer" length="4"/>
+<property name="rdelete" column="rdelete" type="integer" length="4"/>
+<property name="rexecute" column="rexecute" type="integer" length="4"/>
+<property name="name" column="name" type="string" length="45"/>
+<property name="name_short" column="name_short" type="string" length="6"/>
+
+<set name="comp" inverse="false" cascade="all" table="company_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.company" column="company_idcompany" />
+</set>
+
+<set name="user" cascade="all" table="user_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.user" column="user_idUser" />
+</set>
+
+<set name="region" inverse="false" cascade="all" table="region_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.region" column="region_idRegion" />
+</set>
+
+
+<set name="circle" inverse="false" cascade="all" table="circle_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.circle" column="circle_idCircle" />
+</set>
+
+<set name="division" inverse="false" cascade="all" table="division_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.division" column="division_idDivision" />
+</set>
+
+<set name="subdivision" inverse="false" cascade="all" table="subdivision_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.subdivision" column="subdivision_idSubDivision" />
+</set>
+
+<set name="distcenter_zone" inverse="false" cascade="all" table="distcenter_zone_has_role">
+<key column="role_idrole" />
+<many-to-many class="ps.distcenter_zone" column="distcenter_idDistCenter" />
+</set>
+
+
+</class>
+</hibernate-mapping>
