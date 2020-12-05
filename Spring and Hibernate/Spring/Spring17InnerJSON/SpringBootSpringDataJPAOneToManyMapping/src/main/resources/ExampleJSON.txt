@@ -1,0 +1,25 @@
+{
+		"id":1,
+		"name":"Pranay",
+		"email":"Pranay@gmail.com",
+		"gender":"Male",
+		"products":	[{
+			"pid":1,
+			"productName":"Mobile",
+			"price":10000,
+			"qty":10
+			},
+			{
+			"pid":2,
+			"productName":"Laptop",
+			"price":20000,
+			"qty":8
+			},
+			{
+			"pid":3,
+			"productName":"Pendrive",
+			"price":1000,
+			"qty":20
+			}
+		]
+}
