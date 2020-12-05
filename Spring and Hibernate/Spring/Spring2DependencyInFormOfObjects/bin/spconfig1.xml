@@ -1,0 +1,15 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+<bean id="id1" class="ps.Cars">
+<property name="fuelType" value="Diesel"/>
+<property name="maxSpeed" value="100"/>
+</bean>
+
+<bean id="id2" class="ps.Bus">
+<property name="maxSpeed" value="200"/>
+</bean>
+
+</beans>

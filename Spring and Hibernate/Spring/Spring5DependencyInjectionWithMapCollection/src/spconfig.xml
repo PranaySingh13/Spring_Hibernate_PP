@@ -1,0 +1,26 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+<bean id="id1" class="ps.WelcomeBean">
+<property name="data">
+
+<map>
+
+<entry key="k1">
+<value>Java</value>
+</entry>
+
+<entry key="k2">
+<value>100</value>
+</entry>
+
+<entry key="k3">
+<value>Spring</value>
+</entry>
+
+</map>
+
+</property>
+</bean>
+</beans>

@@ -1,0 +1,19 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+<!-- <bean id="id1" class="ps.Demobean" init-method="in" destroy-method="dest">
+ -->
+<!--  if we are initializing the init and destory method in xml then we dont have to implements the interface initializing, disposable interface -->   
+<bean id="id1" class="ps.Demobean" init-method="init" > <!-- init method must be implemented in xml as it is not method of InitializingBean interface-->
+
+<property name="name" value="Pranay Singh" />
+<property name="password" value="abc123"></property>
+
+<constructor-arg value="pranay" />
+<constructor-arg value="abc" />
+
+</bean>
+
+</beans>
